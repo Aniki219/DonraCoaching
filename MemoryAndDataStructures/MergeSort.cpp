@@ -19,9 +19,9 @@ void merge(int arr[], int start, int mid, int end) {
             } else {
                 tempArray[k] = arr[j++];
             }
-        } else if (i > mid && j <= end) {
+        } else if (i > mid) {
             tempArray[k] = arr[j++];
-        } else if (i <= mid && j > end) {
+        } else if (j > end) {
             tempArray[k] = arr[i++];
         }
     }
@@ -31,13 +31,13 @@ void merge(int arr[], int start, int mid, int end) {
     }
 }
 
-void quickSort(int arr[], int start, int end) {
+void mergeSort(int arr[], int start, int end) {
     if (start >= end) {
         return;
     }
     int mid = start + (end - start) / 2;
-    quickSort(arr, start, mid);
-    quickSort(arr, mid + 1, end);
+    mergeSort(arr, start, mid);
+    mergeSort(arr, mid + 1, end);
     merge(arr, start, mid, end);
 }
 
@@ -60,7 +60,7 @@ int main() {
         numsArray[i] = rand() % 10;
     }
     printArray(numsArray);
-    quickSort(numsArray, 0, ARRAY_SIZE - 1);
+    mergeSort(numsArray, 0, ARRAY_SIZE - 1);
     printArray(numsArray);
     return 0;
 }
